@@ -1,14 +1,14 @@
-// Mock the i18n module first
+import { jest } from '@jest/globals';
+import useSwitchLanguage from '../useSwitchLanguage';
+import i18n from '../../i18n';
+
+// Mock the i18n module
 jest.mock('../../i18n', () => ({
   __esModule: true,
   default: {
     changeLanguage: jest.fn()
   }
 }));
-
-// Import after mocking
-const useSwitchLanguage = require('../useSwitchLanguage').default;
-const i18n = require('../../i18n').default;
 
 describe('useSwitchLanguage Hook', () => {
   beforeEach(() => {

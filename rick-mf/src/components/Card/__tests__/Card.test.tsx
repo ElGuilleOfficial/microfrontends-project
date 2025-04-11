@@ -1,18 +1,43 @@
-const { render, screen } = require('@testing-library/react');
-const Card = require('../Index').default;
-require('../../../../i18n/index');
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Card from '../Index';
+import { Character } from '../../../types/character';
 
-// Mock the styled-components
-jest.mock('../styles', () => ({
-  ContainerCharacters: ({ children }) => <div data-testid="container-characters">{children}</div>,
-  StatusBadge: ({ children, status }) => 
-    <div data-testid="status-badge" data-status={status}>{children}</div>,
-  CharacterSpan: ({ children }) => <span data-testid="character-span">{children}</span>,
-  CharactersDescription: ({ children }) => 
-    <div data-testid="characters-description">{children}</div>
+// Mock react-i18next before imports
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string): string => {
+      const translations: Record<string, string> = {
+        'alive': 'Alive',
+        'dead': 'Dead',
+        'unknown': 'Unknown',
+        'gender': 'Gender',
+        'species': 'Species',
+        'Male': 'Male',
+        'Human': 'Human'
+      };
+      return translations[key] || key;
+    }
+  })
 }));
 
-const mockCharacter = {
+// Mock styled-components
+jest.mock('../styles', () => ({
+  ContainerCharacters: ({ children }: { children: React.ReactNode }): JSX.Element => (
+    <div data-testid="container-characters">{children}</div>
+  ),
+  StatusBadge: ({ children, status }: { children: React.ReactNode, status: 'Alive' | 'Dead' | 'unknown' }): JSX.Element => (
+    <div data-testid="status-badge" data-status={status}>{children}</div>
+  ),
+  CharacterSpan: ({ children }: { children: React.ReactNode }): JSX.Element => (
+    <span data-testid="character-span">{children}</span>
+  ),
+  CharactersDescription: ({ children }: { children: React.ReactNode }): JSX.Element => (
+    <div data-testid="characters-description">{children}</div>
+  )
+}));
+
+const mockCharacter: Character = {
   name: 'Rick Sanchez',
   image: 'rick-image.jpg',
   gender: 'Male',
@@ -45,7 +70,7 @@ describe('Card Component', () => {
   });
   
   test('renders unknown status correctly', () => {
-    const unknownCharacter = {
+    const unknownCharacter: Character = {
       ...mockCharacter,
       status: 'unknown'
     };
@@ -58,7 +83,7 @@ describe('Card Component', () => {
   });
   
   test('renders dead status correctly', () => {
-    const deadCharacter = {
+    const deadCharacter: Character = {
       ...mockCharacter,
       status: 'Dead'
     };

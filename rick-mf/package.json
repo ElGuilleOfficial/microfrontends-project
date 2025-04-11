@@ -53,7 +53,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "transform": {
-      "^.+\\.(ts|tsx)$": [
+      "^.+\\.(ts|tsx|js|jsx)$": [
         "babel-jest",
         {
           "presets": [
@@ -69,6 +69,6 @@
       "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
     "setupFilesAfterEnv": ["<rootDir>/setup-jest.js"],
-    "testMatch": ["**/__tests__/**/*.test.js"]
+    "testMatch": ["**/__tests__/**/*.test.(ts|tsx|js|jsx)"]
   }
 }

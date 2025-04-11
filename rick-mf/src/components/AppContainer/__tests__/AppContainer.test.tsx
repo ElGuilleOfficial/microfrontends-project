@@ -1,12 +1,13 @@
-const { render } = require('@testing-library/react');
-const AppContainer = require('../Index').default;
-require('../../../i18n/index');
+import { render, RenderResult } from '@testing-library/react';
+import React, { ReactNode } from 'react';
+import AppContainer from '../Index';
+import '../../../i18n/index';
 
 // Mock the ListCharacters component
 jest.mock('../../ListCharacters/Index', () => {
   return {
     __esModule: true,
-    default: () => <div data-testid="list-characters">Mocked ListCharacters Component</div>,
+    default: (): JSX.Element => <div data-testid="list-characters">Mocked ListCharacters Component</div>,
   };
 });
 
@@ -14,7 +15,7 @@ jest.mock('../../ListCharacters/Index', () => {
 jest.mock('../../../context/LanguageContext', () => {
   return {
     __esModule: true,
-    default: ({ children }) => (
+    default: ({ children }: { children: ReactNode }): JSX.Element => (
       <div data-testid="i18n-container">{children}</div>
     ),
   };
@@ -22,7 +23,7 @@ jest.mock('../../../context/LanguageContext', () => {
 
 describe('AppContainer Component', () => {
   test('renders ListCharacters within Container18n', () => {
-    const { getByTestId } = render(<AppContainer />);
+    const { getByTestId }: RenderResult = render(<AppContainer />);
     
     // Check if the i18n container is rendered
     const i18nContainer = getByTestId('i18n-container');
