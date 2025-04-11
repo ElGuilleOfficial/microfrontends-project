@@ -5,6 +5,7 @@ const ContainerCharacters = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;
+  background-color: #000;
 
   @media (min-width: 640px) {
     max-width: 640px;
