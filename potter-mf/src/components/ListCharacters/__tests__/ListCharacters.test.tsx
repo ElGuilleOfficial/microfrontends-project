@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, act } from '@testing-library/react';
+import { render, act, RenderResult } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ListCharacters from '../Index';
 import { fetchCharacters } from '../../../services/api/characters';
+import { Character } from '../../../types/character';
 
 // No es necesario mockear i18n aquí, ya se hace a nivel global en __mocks__/react-i18next.js
 
@@ -10,7 +11,7 @@ import { fetchCharacters } from '../../../services/api/characters';
 jest.mock('../../../services/api/characters');
 
 describe('ListCharacters Component', () => {
-  const mockCharacters = [
+  const mockCharacters: Character[] = [
     {
       id: 1,
       name: 'Harry Potter',
@@ -29,16 +30,16 @@ describe('ListCharacters Component', () => {
     }
   ];
 
-  beforeEach(() => {
+  beforeEach((): void => {
     // Resetear todos los mocks antes de cada prueba
     jest.clearAllMocks();
   });
 
-  test('renders loading state initially', () => {
+  test('renders loading state initially', (): void => {
     // Mock que devuelve una promesa que nunca se resuelve
-    (fetchCharacters as jest.Mock).mockImplementation(() => new Promise(() => {}));
+    (fetchCharacters as jest.Mock<Promise<Character[]>>).mockImplementation(() => new Promise(() => {}));
     
-    const { getByTestId } = render(
+    const { getByTestId }: RenderResult = render(
       <ListCharacters />
     );
     
@@ -46,13 +47,13 @@ describe('ListCharacters Component', () => {
     expect(getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
-  test('renders characters after loading', async () => {
+  test('renders characters after loading', async (): Promise<void> => {
     // Mock de fetchCharacters para resolver con los personajes de prueba
-    (fetchCharacters as jest.Mock).mockResolvedValue(mockCharacters);
+    (fetchCharacters as jest.Mock<Promise<Character[]>>).mockResolvedValue(mockCharacters);
     
-    let renderedComponent = {} as ReturnType<typeof render>;
+    let renderedComponent: RenderResult = {} as RenderResult;
     
-    await act(async () => {
+    await act(async (): Promise<void> => {
       renderedComponent = render(
         <ListCharacters />
       );
@@ -64,22 +65,22 @@ describe('ListCharacters Component', () => {
     expect(queryByTestId('loading-spinner')).not.toBeInTheDocument();
     
     // Verificar que se han renderizado las tarjetas de personajes
-    const characterCards = getAllByTestId('character-card');
+    const characterCards: HTMLElement[] = getAllByTestId('character-card');
     expect(characterCards.length).toBe(2);
     
     // Verificar que se llamó a la API
     expect(fetchCharacters).toHaveBeenCalledTimes(1);
   });
 
-  test('handles API error gracefully', async () => {
-    console.error = jest.fn(); // Suprimir los mensajes de error de la consola
+  test('handles API error gracefully', async (): Promise<void> => {
+    (console.error as jest.Mock) = jest.fn(); // Suprimir los mensajes de error de la consola
     
     // Mock que devuelve un error
-    (fetchCharacters as jest.Mock).mockRejectedValue(new Error('API Error'));
+    (fetchCharacters as jest.Mock<Promise<Character[]>>).mockRejectedValue(new Error('API Error'));
     
-    let renderedComponent = {} as ReturnType<typeof render>;
+    let renderedComponent: RenderResult = {} as RenderResult;
     
-    await act(async () => {
+    await act(async (): Promise<void> => {
       renderedComponent = render(
         <ListCharacters />
       );

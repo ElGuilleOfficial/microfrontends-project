@@ -1,12 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Card from '../Index';
+import { Character } from '../../../types/character';
 
 // No es necesario mockear i18n aquí, ya se hace a nivel global en __mocks__/react-i18next.js
 
 describe('Card Component', () => {
-  const mockCharacter = {
+  const mockCharacter: Character = {
     name: 'Harry Potter',
     image: 'harry.jpg',
     gender: 'male',
@@ -14,8 +15,8 @@ describe('Card Component', () => {
     alive: true
   };
 
-  test('renders character information correctly', () => {
-    const { getByText, getByAltText } = render(
+  test('renders character information correctly', (): void => {
+    const { getByText, getByAltText }: RenderResult = render(
       <Card {...mockCharacter} />
     );
 
@@ -32,13 +33,13 @@ describe('Card Component', () => {
     expect(getByText(/Species: Human/i)).toBeInTheDocument();
 
     // Verificar que la imagen tiene el alt correcto
-    const image = getByAltText('Harry Potter');
+    const image: HTMLImageElement = getByAltText('Harry Potter') as HTMLImageElement;
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', 'harry.jpg');
   });
 
-  test('renders dead status correctly', () => {
-    const { getByText } = render(
+  test('renders dead status correctly', (): void => {
+    const { getByText }: RenderResult = render(
       <Card {...mockCharacter} alive={false} />
     );
 

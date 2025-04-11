@@ -1,17 +1,18 @@
 import { fetchCharacters } from '../characters';
+import { Character } from '../../../types/character';
 
 // Mockear fetch
-global.fetch = jest.fn();
+global.fetch = jest.fn() as unknown as jest.Mock;
 
 describe('characters API', () => {
-  beforeEach(() => {
+  beforeEach((): void => {
     jest.clearAllMocks();
   });
 
-  test('fetchCharacters returns data from API', async () => {
-    const mockData = [
+  test('fetchCharacters returns data from API', async (): Promise<void> => {
+    const mockData: Character[] = [
       {
-        id: '1',
+        id: 1,
         name: 'Harry Potter',
         image: 'harry.jpg',
         gender: 'male',
@@ -25,7 +26,7 @@ describe('characters API', () => {
       json: jest.fn().mockResolvedValueOnce(mockData)
     });
     
-    const result = await fetchCharacters();
+    const result: Character[] = await fetchCharacters();
     
     // Verificar que fetch fue llamado con la URL correcta
     expect(fetch).toHaveBeenCalledWith('https://hp-api.onrender.com/api/characters');
@@ -34,10 +35,12 @@ describe('characters API', () => {
     expect(result).toEqual(mockData);
   });
 
-  test('fetchCharacters filters out characters with empty images', async () => {
-    const mockData = [
+  test('fetchCharacters filters out characters with empty images', async (): Promise<void> => {
+    type CharacterWithNullImage = Omit<Character, 'image'> & { image: string | null };
+    
+    const mockData: (Character | CharacterWithNullImage)[] = [
       {
-        id: '1',
+        id: 1,
         name: 'Harry Potter',
         image: 'harry.jpg',
         gender: 'male',
@@ -45,7 +48,7 @@ describe('characters API', () => {
         alive: true
       },
       {
-        id: '2',
+        id: 2,
         name: 'No Image',
         image: null,
         gender: 'male',
@@ -53,7 +56,7 @@ describe('characters API', () => {
         alive: true
       },
       {
-        id: '3',
+        id: 3,
         name: 'Empty Image',
         image: '',
         gender: 'female',
@@ -67,7 +70,7 @@ describe('characters API', () => {
       json: jest.fn().mockResolvedValueOnce(mockData)
     });
     
-    const result = await fetchCharacters();
+    const result: Character[] = await fetchCharacters();
     
     // Verificar que fetch fue llamado con la URL correcta
     expect(fetch).toHaveBeenCalledWith('https://hp-api.onrender.com/api/characters');
@@ -77,7 +80,7 @@ describe('characters API', () => {
     expect(result[0].name).toBe('Harry Potter');
   });
 
-  test('fetchCharacters throws error when API call fails', async () => {
+  test('fetchCharacters throws error when API call fails', async (): Promise<void> => {
     // Mock de error en fetch
     (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('API Error'));
     
