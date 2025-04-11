@@ -1,0 +1,1 @@
+export enum Options { 'none' , 'rick' , 'hp' }

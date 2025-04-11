@@ -5,38 +5,46 @@ import {
   BodyTitle,
   BodyButtons,
   BodyButtonOption,
-} from './styles';
-
-const RickCharacters = React.lazy(() => import('rick/AppContainer'))
-const PotterCharacters = React.lazy(() => import('potter/AppContainer'))
+} from './styles'
+import { Options } from '../../types/options'
 
 const Body: React.FC = () => {
   const { t } = useTranslation()
-  const [show, setShow] = useState<'none' | 'rick' | 'hp'>('none')
+  const [Component, setComponent] = useState<React.LazyExoticComponent<React.ComponentType> | null>(null)
+
+  const handleLoad = async (option: Options) => {
+    if (option === Options.rick) {
+      const LazyRick = React.lazy(() => import('rick/AppContainer'))
+      setComponent(() => LazyRick)
+    }
+
+    if (option === Options.hp) {
+      const LazyPotter = React.lazy(() => import('potter/AppContainer'))
+      setComponent(() => LazyPotter)
+    }
+  }
 
   return (
     <>
       <ContainerBody>
-        <BodyTitle> {t('description')} </BodyTitle>
+        <BodyTitle>{t('description')}</BodyTitle>
 
         <BodyButtons>
-          <BodyButtonOption onClick={() => setShow('rick')}>
+          <BodyButtonOption onClick={() => handleLoad(Options.rick)}>
             {t('buttonRick')}
           </BodyButtonOption>
 
-          <BodyButtonOption onClick={() => setShow('hp')}>
+          <BodyButtonOption onClick={() => handleLoad(Options.hp)}>
             {t('buttonHP')}
           </BodyButtonOption>
         </BodyButtons>
       </ContainerBody>
 
       <Suspense>
-        {show === 'rick' && <RickCharacters/>}
-        {show === 'hp' && <PotterCharacters/>}
+        {Component && <Component />}
       </Suspense>
     </>
   )
 }
 
 export default Body
-
