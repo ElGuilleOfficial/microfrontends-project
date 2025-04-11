@@ -1,35 +1,35 @@
 # 📦 Microfrontend — Harry Potter
 
-Este proyecto es parte de una arquitectura basada en **microfrontends**, y se encarga de mostrar personajes de la película **Harry Potter**.
+This project is part of a **microfrontend** architecture and is responsible for displaying characters from the **Harry Potter** movie series.
 
 ---
 
-## 🧠 ¿Qué es un Microfrontend?
+## 🧠 What is a Microfrontend?
 
-Un **microfrontend** es un enfoque arquitectónico que divide una aplicación web en múltiples aplicaciones más pequeñas y autónomas. Cada una de ellas puede ser desarrollada, desplegada y mantenida de forma independiente, incluso por diferentes equipos, y luego integrarse en una aplicación host (contenedora) mediante técnicas como **Module Federation** de Webpack/Vite.
+A **microfrontend** is an architectural approach that breaks a web application into smaller, independent apps. Each microfrontend can be developed, deployed, and maintained separately—potentially by different teams—and later integrated into a host application using techniques such as **Module Federation** (via Webpack or Vite).
 
 ---
 
-## 🛠 Tecnologías utilizadas
+## 🛠 Technologies Used
 
 - ⚛️ **React**
 - ⚡ **Vite**
-- 🧩 **Module Federation** vía [`vite-plugin-federation`](https://github.com/originjs/vite-plugin-federation)
-- 🧪 **Testing Library + Jest** (opcional)
-- 🌐 **Vercel** para despliegue
+- 🧩 **Module Federation** via [`vite-plugin-federation`](https://github.com/originjs/vite-plugin-federation)
+- 🧪 **Testing Library + Jest** (optional)
+- 🌐 **Vercel** for deployment
 
 ---
 
-## 🚀 ¿Cómo correr este microfrontend localmente?
+## 🚀 How to run this microfrontend locally?
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clone the repository
 git clone https://github.com/ElGuilleOfficial/microfrontends-project.git
 cd microfrontends-project/potter-mf
 
-# 2. Instalar dependencias
+# 2. Install dependencies
 yarn install
 
-# 3. Build y correr el servidor de vista previa
+# 3. Build and run the preview server
 yarn build
 yarn preview --port 5002
