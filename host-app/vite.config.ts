@@ -8,8 +8,8 @@ export default defineConfig({
     federation({
       name: 'host',
       remotes: {
-        rick: 'http://localhost:5001/assets/remoteEntry.js',
-        potter: 'http://localhost:5002/assets/remoteEntry.js',
+        rick: 'https://microfrontends-rick-and-morty.vercel.app/remoteEntry.js',
+        potter: 'https://microfrontends-harry-potter.vercel.app/remoteEntry.js',
       },
       shared: ['react', 'react-dom'],
     }),
