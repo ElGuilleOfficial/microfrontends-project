@@ -1,0 +1,10 @@
+{
+    "gender": "Genero",
+    "Male": "Masculino",
+    "Female": "Femenino",
+    "Human": "Humano",
+    "species": "Especie",
+    "dead": "Muerto",
+    "alive": "Con Vida",
+    "unknown": "Desconocido"
+}
