@@ -2,8 +2,9 @@
 
 This project implements a microfrontend architecture using **React**, **Vite**, and **vite-plugin-federation**. It consists of a main application (host) that consumes two microfrontends:
 
-- `Rick And Morty`: Microfrontend displaying Rick and Morty characters
-- `Harry Potter`: Microfrontend displaying Harry Potter characters
+- `Rick And Morty`: Microfrontend displaying Rick and Morty characters [Vercel](https://microfrontends-rick-and-morty.vercel.app/)
+- `Harry Potter`: Microfrontend displaying Harry Potter characters [Vercel](https://microfrontends-harry-potter.vercel.app/)
+- `Host App`: Main container that integrates both microfronteds [Vercel](https://microfrontends-host.vercel.app/)
 
 ---
 
