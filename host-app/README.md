@@ -35,7 +35,7 @@ The host is responsible for:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/microfrontends-project.git
+git clone https://github.com/ElGuilleOfficial/microfrontends-project.git
 cd microfrontends-project/host-app
 
 # 2. Install dependencies
