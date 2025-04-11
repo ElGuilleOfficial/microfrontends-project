@@ -1,12 +1,12 @@
 # 🧩 Microfrontend Host
 
-This project acts as the main container (host) within a microfrontend architecture. Its purpose is to orchestrate and render independent microfrontends—such as those for Rick and Morty and Harry Potter—using Module Federation with Vite.
+This project serves as the **main container (host)** within a **microfrontend architecture**. Its purpose is to orchestrate and render independent microfrontends—such as **Rick and Morty** and **Harry Potter**—using **Module Federation** with Vite.
 
 ---
 
 ## 🧠 What is a Microfrontend?
 
-A microfrontend is an architecture that decomposes a large web application into multiple smaller, self-contained applications. Each microfrontend can be developed, tested, and deployed separately, and then integrated into a central container or host.
+A **microfrontend** is an architectural style where a large web application is broken down into smaller, independent apps. Each microfrontend can be developed, tested, and deployed separately, and then integrated into a central container or *host*.
 
 ---
 
@@ -15,17 +15,17 @@ A microfrontend is an architecture that decomposes a large web application into 
 The host is responsible for:
 
 - Integrating the Rick and Morty and Harry Potter microfrontends.
-- Managing the main design.
-- Orchestrate language switching (i18n), navigation, and dynamic loading of microfronts.
-- Serve as a single entry point for the entire application.
+- Managing the main layout.
+- Orchestrating language switching (i18n), navigation, and dynamic loading of microfronts.
+- Serving as the single entry point for the entire application.
 
 ---
 
 ## 🛠 Technologies used
 
 - ⚛️ **React**
-- ⚡ **Vita**
-- 🧩 **Module federation** via [`vite-plugin-federation`](https://github.com/originjs/vite-plugin-federation)
+- ⚡ **Vite**
+- 🧩 **Module Federation** via [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)
 - 🌐 **Vercel** for deployment
 - 🔠 **i18n** (internationalization)
 
@@ -33,13 +33,13 @@ The host is responsible for:
 
 ## 🚀 How to run the host locally?
 
-```
+```bash
 # 1. Clone the repository
-git clone https://github.com/your-user/microfrontends-project.git
-cd microfrontends-project/host-application
+git clone https://github.com/your-username/microfrontends-project.git
+cd microfrontends-project/host-app
 
 # 2. Install dependencies
-yarn installation
+yarn install
 
-# 3. Run the development server
-yarn developer
+# 3. Start the development server
+yarn dev
