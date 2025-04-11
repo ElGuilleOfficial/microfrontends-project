@@ -18,7 +18,7 @@ const Card: React.FC<Character> = ({ name, image, gender, species, alive }) => {
   };
 
   return (
-    <ContainerCharacters>
+    <ContainerCharacters data-testid="character-card">
       <StatusBadge alive={getSafeAlive(alive)}>
         {getTextAlive(alive)}
       </StatusBadge>

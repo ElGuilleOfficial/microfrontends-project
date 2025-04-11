@@ -1,7 +1,7 @@
 import { SpinnerWrapper, Spinner } from './styles';
 
 const LoadingSpinner = () => (
-  <SpinnerWrapper>
+  <SpinnerWrapper data-testid="loading-spinner">
     <Spinner />
   </SpinnerWrapper>
 );
