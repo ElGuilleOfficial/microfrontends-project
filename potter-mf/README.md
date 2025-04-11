@@ -1,54 +1,35 @@
-# React + TypeScript + Vite
+# 📦 Microfrontend — Harry Potter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es parte de una arquitectura basada en **microfrontends**, y se encarga de mostrar personajes de la película **Harry Potter**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧠 ¿Qué es un Microfrontend?
 
-## Expanding the ESLint configuration
+Un **microfrontend** es un enfoque arquitectónico que divide una aplicación web en múltiples aplicaciones más pequeñas y autónomas. Cada una de ellas puede ser desarrollada, desplegada y mantenida de forma independiente, incluso por diferentes equipos, y luego integrarse en una aplicación host (contenedora) mediante técnicas como **Module Federation** de Webpack/Vite.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠 Tecnologías utilizadas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- ⚛️ **React**
+- ⚡ **Vite**
+- 🧩 **Module Federation** vía [`vite-plugin-federation`](https://github.com/originjs/vite-plugin-federation)
+- 🧪 **Testing Library + Jest** (opcional)
+- 🌐 **Vercel** para despliegue
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🚀 ¿Cómo correr este microfrontend localmente?
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/ElGuilleOfficial/microfrontends-project.git
+cd microfrontends-project/potter-mf
+
+# 2. Instalar dependencias
+yarn install
+
+# 3. Build y correr el servidor de vista previa
+yarn build
+yarn preview --port 5002
