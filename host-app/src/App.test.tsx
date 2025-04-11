@@ -1,15 +1,16 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
+import React from 'react'
 import App from './App'
 
 // Mock del componente AppContainer
 vi.mock('./components/AppContainer', () => ({
-  default: () => <div data-testid="app-container">App Container Component</div>,
+  default: (): React.ReactElement => <div data-testid="app-container">App Container Component</div>,
 }))
 
 describe('App Component', () => {
   it('renders AppContainer component', () => {
-    const { getByTestId } = render(<App />)
+    const { getByTestId }: RenderResult = render(<App />)
     
     // Verificar que se renderice el componente AppContainer
     expect(getByTestId('app-container')).toBeInTheDocument()

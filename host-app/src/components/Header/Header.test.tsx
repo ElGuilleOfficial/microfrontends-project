@@ -1,12 +1,22 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import React from 'react'
 import Header from './Index'
+import { TFunction } from 'i18next'
 
 // Mock del hook useSwitchLanguage con una función de seguimiento
-const mockSwitchAllLanguages = vi.fn()
+const mockSwitchAllLanguages: Mock = vi.fn()
+
+interface SwitchLanguageHook {
+  switchAllLanguages: (language: string) => void;
+  switchHostLanguage: (language: string) => Promise<TFunction>;
+  switchAppRickLanguage: (language: string) => Promise<void>;
+  switchAppHpLanguage: (language: string) => Promise<void>;
+}
+
 vi.mock('../../hooks/useSwitchLanguage', () => ({
-  default: () => ({
+  default: (): SwitchLanguageHook => ({
     switchAllLanguages: mockSwitchAllLanguages,
     switchHostLanguage: vi.fn(),
     switchAppRickLanguage: vi.fn(),
@@ -15,8 +25,18 @@ vi.mock('../../hooks/useSwitchLanguage', () => ({
 }))
 
 // Mock del hook de useTranslation
+interface I18nInstanceMock {
+  language: string;
+  changeLanguage: Mock;
+}
+
+interface UseTranslationReturnMock {
+  t: (key: string) => string;
+  i18n: I18nInstanceMock;
+}
+
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
+  useTranslation: (): UseTranslationReturnMock => ({
     t: (key: string) => key,
     i18n: {
       language: 'en',

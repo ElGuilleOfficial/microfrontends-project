@@ -2,7 +2,7 @@ import React from 'react'
 import { Options } from '../../../types/options'
 
 const Body: React.FC = () => {
-  const handleLoad = (option: Options) => {
+  const handleLoad = (option: Options): void => {
     // Esta es una versión simulada que no intenta cargar módulos federados
     console.log('Mock handleLoad called with option:', option)
   }
@@ -12,8 +12,8 @@ const Body: React.FC = () => {
       <div>
         <h2>description</h2>
         <div>
-          <button onClick={() => handleLoad(Options.rick)}>buttonRick</button>
-          <button onClick={() => handleLoad(Options.hp)}>buttonHP</button>
+          <button onClick={(): void => handleLoad(Options.rick)}>buttonRick</button>
+          <button onClick={(): void => handleLoad(Options.hp)}>buttonHP</button>
         </div>
       </div>
     </>
