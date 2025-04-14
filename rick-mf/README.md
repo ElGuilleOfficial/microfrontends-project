@@ -15,8 +15,9 @@ A **microfrontend** is an architectural approach that breaks a web application i
 - ⚛️ **React**
 - ⚡ **Vite**
 - 🧩 **Module Federation** via [`vite-plugin-federation`](https://github.com/originjs/vite-plugin-federation)
-- 🧪 **Testing Library + Jest** (optional)
+- 🧪 **Testing Library + Jest + Babel (TypeScript and JSX transpilation)**
 - 🌐 **Vercel** for deployment
+- 🔠 **i18n** (internationalization)
 
 ---
 
@@ -33,3 +34,6 @@ yarn install
 # 3. Build and run the preview server
 yarn build
 yarn preview --port 5001
+
+# 4. Units Test
+yarn test
