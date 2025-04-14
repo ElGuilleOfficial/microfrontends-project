@@ -26,6 +26,7 @@ The host is responsible for:
 - ⚛️ **React**
 - ⚡ **Vite**
 - 🧩 **Module Federation** via [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)
+- 🧪 **Testing Library + Vitest**
 - 🌐 **Vercel** for deployment
 - 🔠 **i18n** (internationalization)
 
@@ -43,3 +44,6 @@ yarn install
 
 # 3. Start the development server
 yarn dev
+
+# 4. Units Test
+yarn test
